@@ -51,7 +51,7 @@
 			<version>3.0.7</version>
 			<exclusions>
 				<exclusion>
-					<!-- This is excluded because ffmq3 depend explicitly on jms, but that jar doe not exists. -->
+					<!-- This is excluded because ffmq3 depend explicitly on jms, but that jar does not exists on maven repos. -->
 					<groupId>javax.jms</groupId>
 					<artifactId>jms</artifactId>
 				</exclusion>
