@@ -1,4 +1,4 @@
-package com.danidemi.tutorial;
+package com.danidemi.jlubricant.embeddable.ffmq.sample;
 
 import static java.lang.String.format;
 
@@ -17,7 +17,7 @@ import javax.naming.Context;
 import com.danidemi.jlubricant.utils.jms.RejectAllMessageVisitor;
 import com.danidemi.jlubricant.utils.jms.VisitableMessage;
 
-class MyAsyncReader implements MessageListener {
+public class MyAsyncReader implements MessageListener {
 	
 	private Context context;
 	private String name;

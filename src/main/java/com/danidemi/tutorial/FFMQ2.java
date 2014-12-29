@@ -2,10 +2,6 @@ package com.danidemi.tutorial;
 
 import java.util.Hashtable;
 
-import javax.jms.BytesMessage;
-import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
-import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -14,10 +10,12 @@ import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
 
 import net.timewalker.ffmq3.FFMQConstants;
-import net.timewalker.ffmq3.local.connection.LocalConnection;
 
 import com.danidemi.jlubricant.embeddable.ServerException;
-import com.danidemi.jlubricant.embeddable.ffmq.core.FFMQEmbeddableServer;
+import com.danidemi.jlubricant.embeddable.ffmq.core.FileBasedFFMQEmbeddableServer;
+import com.danidemi.jlubricant.embeddable.ffmq.sample.MyAsyncReader;
+import com.danidemi.jlubricant.embeddable.ffmq.sample.MyProducer;
+import com.danidemi.jlubricant.embeddable.ffmq.sample.MySyncReader;
 
 public class FFMQ2 {
 
@@ -34,7 +32,7 @@ public class FFMQ2 {
 
 	private static void dodo() throws ServerException, NamingException, JMSException, InterruptedException {
 		
-		FFMQEmbeddableServer server = new FFMQEmbeddableServer();
+		FileBasedFFMQEmbeddableServer server = new FileBasedFFMQEmbeddableServer();
 		server.start();
 		
 		

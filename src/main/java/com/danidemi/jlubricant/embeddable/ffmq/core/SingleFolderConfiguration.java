@@ -41,7 +41,7 @@ public class SingleFolderConfiguration {
 		
 		log.info("Properties: {}", usedProps);
 	}
-
+	
 	public Properties getProperties() {
 		return usedProps;
 	}

@@ -1,4 +1,4 @@
-package com.danidemi.tutorial;
+package com.danidemi.jlubricant.embeddable.ffmq.sample;
 
 import static java.lang.String.format;
 
