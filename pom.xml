@@ -43,7 +43,13 @@
 		    <groupId>ch.qos.logback</groupId>
 		    <artifactId>logback-classic</artifactId>
 		    <version>1.1.2</version>
-		</dependency>		
+		</dependency>	
+		
+		<dependency>
+		    <groupId>com.danidemi.jlubricant</groupId>
+		    <artifactId>jlubricant-embeddable-ffmq</artifactId>
+		    <version>0.0.15-SNAPSHOT</version>
+		</dependency>	
 
 		<dependency>
 			<groupId>net.timewalker.ffmq</groupId>
