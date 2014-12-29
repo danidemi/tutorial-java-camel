@@ -12,6 +12,6 @@
         <appender-ref ref="console" />
     </root>
     
-    <logger name="net.timewalker.ffmq3" level="INFO" />
+    <logger name="net.timewalker.ffmq3" level="ALL" />
     
 </configuration>
