@@ -1,4 +1,4 @@
-package com.danidemi.tutorial;
+package com.danidemi.jlubricant.embeddable.ffmq.core;
 
 
 
@@ -30,6 +30,8 @@ import org.slf4j.LoggerFactory;
 
 import com.danidemi.jlubricant.embeddable.EmbeddableServer;
 import com.danidemi.jlubricant.embeddable.ServerException;
+import com.danidemi.tutorial.MyProducer;
+import com.danidemi.tutorial.MySyncReader;
 
 /**
  * Embedded FFMQ sample.

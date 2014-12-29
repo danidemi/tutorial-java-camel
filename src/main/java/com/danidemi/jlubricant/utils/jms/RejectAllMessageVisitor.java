@@ -1,4 +1,4 @@
-package com.danidemi.tutorial;
+package com.danidemi.jlubricant.utils.jms;
 
 import javax.jms.BytesMessage;
 import javax.jms.JMSException;

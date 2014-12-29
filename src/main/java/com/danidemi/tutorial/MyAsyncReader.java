@@ -14,6 +14,9 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.naming.Context;
 
+import com.danidemi.jlubricant.utils.jms.RejectAllMessageVisitor;
+import com.danidemi.jlubricant.utils.jms.VisitableMessage;
+
 class MyAsyncReader implements MessageListener {
 	
 	private Context context;

@@ -11,7 +11,7 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.naming.Context;
 
-class MyProducer {
+public class MyProducer {
 	
 	private Context context;
 	private int numOfMsgs = 3;

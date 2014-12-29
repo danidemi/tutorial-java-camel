@@ -1,4 +1,4 @@
-package com.danidemi.tutorial;
+package com.danidemi.jlubricant.embeddable.ffmq.core;
 
 import net.timewalker.ffmq3.listeners.tcp.io.TcpListener;
 import net.timewalker.ffmq3.local.FFMQEngine;

@@ -17,6 +17,7 @@ import net.timewalker.ffmq3.FFMQConstants;
 import net.timewalker.ffmq3.local.connection.LocalConnection;
 
 import com.danidemi.jlubricant.embeddable.ServerException;
+import com.danidemi.jlubricant.embeddable.ffmq.core.FFMQEmbeddableServer;
 
 public class FFMQ2 {
 

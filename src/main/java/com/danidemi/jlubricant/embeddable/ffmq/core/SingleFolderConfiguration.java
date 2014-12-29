@@ -1,4 +1,4 @@
-package com.danidemi.tutorial;
+package com.danidemi.jlubricant.embeddable.ffmq.core;
 
 import java.io.File;
 import java.util.ArrayList;
