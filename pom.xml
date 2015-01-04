@@ -7,95 +7,81 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>tutorial-java-camel</name>
 	<url>http://maven.apache.org</url>
+	
+	<properties>
+		<dpn-camel>2.14.1</dpn-camel>
+		<dpn-junit>4.11</dpn-junit>
+		<dpn-slf4j>1.7.9</dpn-slf4j>
+		<dpn-logback>1.1.2</dpn-logback>
+		<dpn-jlubricant>0.0.15-SNAPSHOT</dpn-jlubricant>
+		<dpn-commons-io>2.4</dpn-commons-io>
+		<dpn-jms>1.1-rev-1</dpn-jms>
+	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-core</artifactId>
-			<version>2.14.1</version>
+			<version>${dpn-camel}</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.11</version>
+			<version>${dpn-junit}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>log4j-over-slf4j</artifactId>
-			<version>1.7.9</version>
+			<version>${dpn-slf4j}</version>
 		</dependency>
 		<dependency>
 		    <groupId>org.slf4j</groupId>
 		    <artifactId>slf4j-api</artifactId>
-		    <version>1.7.9</version>
+		    <version>${dpn-slf4j}</version>
 		</dependency>		
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>log4j-over-slf4j</artifactId>
-			<version>1.7.9</version>
+			<version>${dpn-slf4j}</version>
 		</dependency>		
 		<dependency>
 		    <groupId>ch.qos.logback</groupId>
 		    <artifactId>logback-core</artifactId>
-		    <version>1.1.2</version>
+		    <version>${dpn-logback}</version>
 		</dependency>
 		<dependency>
 		    <groupId>ch.qos.logback</groupId>
 		    <artifactId>logback-classic</artifactId>
-		    <version>1.1.2</version>
+		    <version>${dpn-logback}</version>
 		</dependency>	
-		
 		<dependency>
 		    <groupId>com.danidemi.jlubricant</groupId>
 		    <artifactId>jlubricant-embeddable-ffmq</artifactId>
-		    <version>0.0.15-SNAPSHOT</version>
+		    <version>${dpn-jlubricant}</version>
 		</dependency>	
-
-		<dependency>
-			<groupId>net.timewalker.ffmq</groupId>
-			<artifactId>ffmq3-core</artifactId>
-			<version>3.0.7</version>
-			<exclusions>
-				<exclusion>
-					<!-- This is excluded because ffmq3 depend explicitly on jms, but that jar does not exists on maven repos. -->
-					<groupId>javax.jms</groupId>
-					<artifactId>jms</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>net.timewalker.ffmq</groupId>
-			<artifactId>ffmq3-server</artifactId>
-			<version>3.0.7</version>
-			<exclusions>
-				<exclusion>
-					<!-- This is excluded because ffmq3 depend explicitly on jms, but that jar doe not exists. -->
-					<groupId>javax.jms</groupId>
-					<artifactId>jms</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>		
-		<dependency>
-			<!-- This is the JMS 1.1 API -->
-		    <groupId>javax.jms</groupId>
-		    <artifactId>jms-api</artifactId>
-		    <version>1.1-rev-1</version>
-		</dependency>
-
 		<dependency>
 			<groupId>com.danidemi.jlubricant</groupId>
 			<artifactId>jlubricant-utils</artifactId>
-			<version>0.0.15-SNAPSHOT</version>
+			<version>${dpn-jlubricant}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.danidemi.jlubricant</groupId>
 			<artifactId>jlubricant-embeddable</artifactId>
-			<version>0.0.15-SNAPSHOT</version>
+			<version>${dpn-jlubricant}</version>
 		</dependency>		
+
+		<dependency>
+			<!-- This is the JMS 1.1 API -->
+		    <groupId>javax.jms</groupId>
+		    <artifactId>jms-api</artifactId>
+		    <version>${dpn-jms}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>2.4</version>
+			<version>${dpn-commons-io}</version>
 		</dependency>
 	</dependencies>
 </project>
