@@ -1,5 +1,7 @@
 package com.danidemi.tutorial.camel.customization;
 
+import static java.lang.String.format;
+
 import java.util.Map;
 
 import org.apache.camel.Component;
@@ -15,37 +17,50 @@ import org.apache.camel.impl.DefaultConsumer;
 import org.apache.camel.impl.DefaultEndpoint;
 import org.apache.camel.impl.DefaultMessage;
 import org.apache.camel.impl.DefaultProducer;
+import org.apache.camel.impl.ProducerCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class CustomGenerator extends DefaultComponent {
+public class EchoComponent extends DefaultComponent {
 	
-	private static final Logger log = LoggerFactory.getLogger(CustomGenerator.class);
+	private static final Logger log = LoggerFactory.getLogger(EchoComponent.class);
 
 	@Override
 	protected Endpoint createEndpoint(String uri, String remaining, Map<String, Object> parameters) throws Exception {
 	
-		log.info("Creating endpoint\n{}\n{}\n{}", uri, remaining, parameters);
+		if(!uri.startsWith("echo://")) return null;
 		
-		Endpoint endpoint = new CustomGeneratorEndpoint(uri);
+		String uriName = uri.substring( "echo://".length() );
+	
+		log.info(
+				"Creating endpoint"
+				+ "\n\turi={}"
+				+ "\n\tremaining={}"
+				+ "\n\tparameters={}" 
+				+ "\n\turiname={}", uri, remaining, parameters, uriName);
+		
+		Endpoint endpoint = new EchoEndpoint(uri, uriName);
 		return endpoint;
 	}
 	
-	class CustomGeneratorEndpoint extends DefaultEndpoint {
+	class EchoEndpoint extends DefaultEndpoint {
 
 		private String uri;
-		private Producer producer;
+		private String uriName;
 
-		public CustomGeneratorEndpoint(String uri) {
+		public EchoEndpoint(String uri, String uriName) {
 			this.uri = uri;
+			this.uriName = uriName;
 		}
 
 		public Producer createProducer() throws Exception {
-			return new CustomGeneratorProducer(this);
+			log.info("Creating producer for {}.", uriName);
+			return new EchoProducer(this);
 		}
 
 		public Consumer createConsumer(Processor processor) throws Exception {
-			return new CustomGeneratorConsumer(this, processor);
+			log.info("Creating consumer for {}.", uriName);
+			return new EchoConsumer(this, processor);
 		}
 
 		public boolean isSingleton() {
@@ -59,66 +74,77 @@ public class CustomGenerator extends DefaultComponent {
 		
 		@Override
 		public void start() throws Exception {
-			log.info("Starting Endpoint {}", this.getClass().getName());
-			producer = createProducer();
-			producer.start();
+			log.info("Starting Endpoint {}", this);
 		}
 		
 		@Override
 		public void stop() throws Exception {
-			log.info("Stopping Endpoint {}", this.getClass().getName());
-			producer.stop();
+			log.info("Stopping Endpoint {}", this);
+		}
+		
+		@Override
+		public String toString() {
+			return uriName;
 		}
 		
 	}
 	
-	class CustomGeneratorProducer extends DefaultProducer {
-
-		public CustomGeneratorProducer(Endpoint endpoint) {
+	class EchoProducer extends DefaultProducer {
+		
+		public EchoProducer(EchoEndpoint endpoint) {
 			super(endpoint);
-			// TODO Auto-generated constructor stub
 		}
 
 		public void process(Exchange exchange) throws Exception {
-			log.info("Processing {}", exchange);
+			log.info("Received {} in Producer of {}", exchange, getEndpoint());
+			
+			if(!exchange.hasOut()){
+				log.info("Echoing incoming message.", exchange);
+				
+				Message in = exchange.getIn();
+				DefaultMessage dm = new DefaultMessage();
+				dm.setBody( format( "Echo of '%s'", in ) );
+				exchange.setOut( dm );	
+				
+				Endpoint fromEndpoint = exchange.getFromEndpoint();
+				fromEndpoint.createProducer().process(exchange);
+				
+			}else{
+				System.out.println( format(
+						"***********************************\n"
+						+ "%s"
+						+ "\n***********************************", exchange.getOut().getBody()));
+			}
+		
 		}
 		
 		@Override
 		public void start() throws Exception {
-			log.info("Starting Producer {}", this.getClass().getName());
-			
-			Exchange newExchange = getEndpoint().createExchange(ExchangePattern.InOut);
-			DefaultMessage msg = new DefaultMessage();
-			msg.setBody("This is created by custom");
-			newExchange.setIn( msg );
-			
-			
+			log.info("Starting Producer {} for {}", this, getEndpoint());			
 		}
 		
 		@Override
 		public void stop() throws Exception {
-			log.info("Stopping Producer {}", this.getClass().getName());
+			log.info("Stopping Producer {} for {}", this, getEndpoint());
 		}
 		
 	}
 	
-	class CustomGeneratorConsumer extends DefaultConsumer {
+	class EchoConsumer extends DefaultConsumer {
 
-		public CustomGeneratorConsumer(Endpoint endpoint, Processor processor) {
+		public EchoConsumer(EchoEndpoint endpoint, Processor processor) {
 			super(endpoint, processor);
-			// TODO Auto-generated constructor stub
 		}
-		
-		
 		
 		@Override
 		public void start() throws Exception {
-			log.info("Starting Consumer {}", this.getClass().getName());
+			log.info("Starting Consumer {} for Endpoint {}", this.getClass().getName(), getEndpoint());
 			final Processor theProcessor = getProcessor();
 			
 			Runnable runnable = new Runnable(){
 
 				public void run() {
+					log.info("Creating new Exchange for Endpoint {}", getEndpoint());
 					Exchange createExchange = getEndpoint().createExchange(ExchangePattern.InOut);
 					DefaultMessage in = new DefaultMessage();
 					in.setBody("This has been generated");
