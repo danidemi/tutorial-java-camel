@@ -17,5 +17,7 @@
     <logger name="org.apache.camel.impl" level="WARN" />
     <logger name="org.apache.camel.support" level="WARN" />
     <logger name="org.apache.camel.component" level="WARN" />
+    <logger name="net.timewalker.ffmq3" level="WARN" />
+    <logger name="com.danidemi.jlubricant" level="WARN" />
     
 </configuration>

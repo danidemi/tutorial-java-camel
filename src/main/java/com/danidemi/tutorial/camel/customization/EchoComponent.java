@@ -106,8 +106,8 @@ public class EchoComponent extends DefaultComponent {
 				dm.setBody( format( "Echo of '%s'", in ) );
 				exchange.setOut( dm );	
 				
-				Endpoint fromEndpoint = exchange.getFromEndpoint();
-				fromEndpoint.createProducer().process(exchange);
+				Endpoint destinationEndpoint = exchange.getFromEndpoint();
+				destinationEndpoint.createProducer().process(exchange);
 				
 			}else{
 				System.out.println( format(

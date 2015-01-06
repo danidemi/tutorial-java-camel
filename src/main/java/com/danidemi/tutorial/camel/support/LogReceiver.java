@@ -21,7 +21,7 @@ public class LogReceiver {
 	}
 
 	public void onExchange(Exchange e){
-		System.out.println( format(" *** %s.onExchange() - %s *** ", name, e));
+		System.out.println( format(" *** %s.onExchange() - %s - %s *** ", name, e, e.getIn().getBody()));
 	}
 	
 }

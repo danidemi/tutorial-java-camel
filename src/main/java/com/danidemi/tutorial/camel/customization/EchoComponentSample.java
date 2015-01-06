@@ -1,5 +1,6 @@
 package com.danidemi.tutorial.camel.customization;
 
+import org.apache.camel.ExchangePattern;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.SimpleRegistry;
 
@@ -20,7 +21,7 @@ public class EchoComponentSample extends CamelSampleSupport{
 			@Override
 			public void configure() throws Exception {
 							
-				from("echo:e1").to("echo:e2");
+				from("echo:e1").setExchangePattern(ExchangePattern.InOut).to("echo:e2");
 				
 			}
 			

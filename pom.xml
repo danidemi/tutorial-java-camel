@@ -19,11 +19,20 @@
 	</properties>
 	
 	<dependencies>
+		
+		<!-- CAMEL -->
 		<dependency>
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-core</artifactId>
 			<version>${dpn-camel}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-jms</artifactId>
+			<version>${dpn-camel}</version>
+		</dependency>
+		<!-- CAMEL -->
+		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
