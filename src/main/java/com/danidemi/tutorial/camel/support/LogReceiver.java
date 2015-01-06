@@ -9,8 +9,19 @@ import org.apache.camel.Exchange;
  */
 public class LogReceiver {
 	
+	private String name;
+	
+	public LogReceiver(String name) {
+		super();
+		this.name = name;
+	}
+
+	public LogReceiver() {
+		this( new Object(){}.getClass().getEnclosingClass().getSimpleName() );
+	}
+
 	public void onExchange(Exchange e){
-		System.out.println( format(" *** onExchange() - %s *** ", e));
+		System.out.println( format(" *** %s.onExchange() - %s *** ", name, e));
 	}
 	
 }
