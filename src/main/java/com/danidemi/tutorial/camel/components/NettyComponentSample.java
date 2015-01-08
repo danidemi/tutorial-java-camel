@@ -23,7 +23,7 @@ public class NettyComponentSample extends CamelSampleSupport {
 
 	@Override
 	protected RouteBuilder buildRoutes() {
-		return new RouteBuilder() {
+		RouteBuilder routeBuilder = new RouteBuilder() {
 
 			@Override
 			public void configure() throws Exception {
@@ -33,6 +33,8 @@ public class NettyComponentSample extends CamelSampleSupport {
 			}
 
 		};
+		
+		return routeBuilder;
 	}
 
 	@Override
