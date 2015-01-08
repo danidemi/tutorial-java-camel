@@ -8,8 +8,12 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.impl.DefaultCamelContext;
 import org.apache.camel.impl.SimpleRegistry;
 import org.apache.camel.spi.Registry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class CamelSampleSupport {
+	
+	protected static Logger log = LoggerFactory.getLogger(CamelSampleSupport.class);
 
 	protected abstract RouteBuilder buildRoutes();
 
@@ -19,12 +23,17 @@ public abstract class CamelSampleSupport {
 		
 		DefaultCamelContext context = buildContext();
 		context.addRoutes( buildRoutes() );
+		
+		log.info("Starting Context");
 		context.start();
 		
 		fireRequests();
 		
+		log.info("Letting context run");
 		Thread.sleep(8000);
+		
 		context.stop();
+		log.info("Context stopped");
 		
 		stopServices();
 	}
@@ -50,7 +59,6 @@ public abstract class CamelSampleSupport {
 	protected Registry buildRegistry() {
 		SimpleRegistry myRegistry = new SimpleRegistry();
 		myRegistry.put("logRx", new LogReceiver());
-		myRegistry.put("sampleDataSet", new SampleDataSet());
 		populateRegistry(myRegistry);
 		return myRegistry;
 	}

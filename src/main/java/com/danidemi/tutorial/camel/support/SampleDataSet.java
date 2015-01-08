@@ -4,7 +4,11 @@ import static java.lang.String.format;
 
 import org.apache.camel.component.dataset.DataSetSupport;
 
-class SampleDataSet extends DataSetSupport {
+public class SampleDataSet extends DataSetSupport {
+	
+	public SampleDataSet(int size) {
+		super(size);
+	}
 
 	@Override
 	protected Object createMessageBody(long messageIndex) {

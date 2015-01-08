@@ -14,9 +14,11 @@
     
     <logger name="net.timewalker.ffmq3" level="ALL" />
     <logger name="org.apache.camel" level="ERROR" />
+    <logger name="org.apache.camel.component" level="WARN" />
+    <logger name="org.apache.camel.component.netty" level="ALL" />
+    <logger name="org.apache.camel.component.bean" level="WARN" />
     <logger name="org.apache.camel.impl" level="WARN" />
     <logger name="org.apache.camel.support" level="WARN" />
-    <logger name="org.apache.camel.component" level="WARN" />
     <logger name="net.timewalker.ffmq3" level="WARN" />
     <logger name="com.danidemi.jlubricant" level="WARN" />
     

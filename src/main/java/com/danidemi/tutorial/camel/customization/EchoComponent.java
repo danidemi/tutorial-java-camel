@@ -99,15 +99,20 @@ public class EchoComponent extends DefaultComponent {
 			log.info("Received {} in Producer of {}", exchange, getEndpoint());
 			
 			if(!exchange.hasOut()){
-				log.info("Echoing incoming message.", exchange);
+//				log.info("Echoing incoming message.", exchange);
+//				
+//				Message in = exchange.getIn();
+//				DefaultMessage dm = new DefaultMessage();
+//				dm.setBody( format( "Echo of '%s'", in ) );
+//				exchange.setOut( dm );	
+//				
+//				
+//				Endpoint destinationEndpoint = exchange.getFromEndpoint();
+//				destinationEndpoint.createProducer().process(exchange);
 				
-				Message in = exchange.getIn();
-				DefaultMessage dm = new DefaultMessage();
-				dm.setBody( format( "Echo of '%s'", in ) );
-				exchange.setOut( dm );	
-				
-				Endpoint destinationEndpoint = exchange.getFromEndpoint();
-				destinationEndpoint.createProducer().process(exchange);
+				Message response = exchange.getIn().copy();
+				response.setBody( "Echo of '" + response.getBody() + "'" );
+				exchange.setOut( response );
 				
 			}else{
 				System.out.println( format(

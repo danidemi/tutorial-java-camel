@@ -31,6 +31,11 @@
 			<artifactId>camel-jms</artifactId>
 			<version>${dpn-camel}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-netty</artifactId>
+			<version>${dpn-camel}</version>
+		</dependency>		
 		<!-- CAMEL -->
 		
 		<dependency>
