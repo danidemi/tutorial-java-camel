@@ -21,7 +21,7 @@ public class EchoComponentSample extends CamelSampleSupport{
 			@Override
 			public void configure() throws Exception {
 							
-				from("echo:e1").setExchangePattern(ExchangePattern.InOut).to("echo:e2");
+				from("echo:e1").setExchangePattern(ExchangePattern.InOut).process(new InvertProcessor()).to("echo:e2");
 				
 			}
 			

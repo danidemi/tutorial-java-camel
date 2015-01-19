@@ -5,6 +5,7 @@ import org.apache.camel.impl.SimpleRegistry;
 
 import com.danidemi.tutorial.camel.support.CamelSampleSupport;
 import com.danidemi.tutorial.camel.support.LogReceiver;
+import com.danidemi.tutorial.camel.support.SampleDataSet;
 
 public class PipesAndFilters extends CamelSampleSupport{
 	
@@ -13,6 +14,7 @@ public class PipesAndFilters extends CamelSampleSupport{
 		super.populateRegistry(myRegistry);
 		myRegistry.put("rx1", new LogReceiver("rx1"));
 		myRegistry.put("rx2", new LogReceiver("rx2"));
+		myRegistry.put("sampleDataSet", new SampleDataSet(3));
 	}
 
 	@Override
@@ -22,8 +24,7 @@ public class PipesAndFilters extends CamelSampleSupport{
 			@Override
 			public void configure() throws Exception {
 							
-				//from("dataset:sampleDataSet").pipeline("bean:rx1?method=onExchange", "bean:rx2?method=onExchange");
-				from("dataset:sampleDataSet").pipeline("bean:rx1?method=onExchange", "custom-generator:g1");
+				from("dataset:sampleDataSet").pipeline("bean:rx1?method=onExchange", "bean:rx2?method=onExchange");
 				
 			}
 			

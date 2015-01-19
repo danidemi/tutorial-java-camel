@@ -11,6 +11,9 @@ import org.apache.camel.spi.Registry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * A base class for samples on Camel.
+ */
 public abstract class CamelSampleSupport {
 	
 	protected static Logger log = LoggerFactory.getLogger(CamelSampleSupport.class);
@@ -63,7 +66,8 @@ public abstract class CamelSampleSupport {
 		return myRegistry;
 	}
 
-	protected void populateRegistry(SimpleRegistry myRegistry) {
+	/** Override to populate the Camel registry as needed by the sample. */
+	protected void populateRegistry(SimpleRegistry camelRegistry) {
 	}	
 	
 	protected static void runSample(CamelSampleSupport dataSetSample) {

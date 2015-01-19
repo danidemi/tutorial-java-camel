@@ -13,7 +13,7 @@
 		<dpn-junit>4.11</dpn-junit>
 		<dpn-slf4j>1.7.9</dpn-slf4j>
 		<dpn-logback>1.1.2</dpn-logback>
-		<dpn-jlubricant>0.0.15-SNAPSHOT</dpn-jlubricant>
+		<dpn-jlubricant>0.0.15</dpn-jlubricant>
 		<dpn-commons-io>2.4</dpn-commons-io>
 		<dpn-jms>1.1-rev-1</dpn-jms>
 	</properties>
